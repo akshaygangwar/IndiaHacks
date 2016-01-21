@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class Hero : MonoBehaviour {
 
-	public float speed;
+	float speed = 0;
+	string direction;
 
 	private Text textBox;
 	private bool isUpEnabled = true;
@@ -42,6 +43,9 @@ public class Hero : MonoBehaviour {
 		if (Input.GetKey (KeyCode.DownArrow)) {
 			gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
 		}
+
+		Move (speed, direction);
+
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
@@ -153,4 +157,28 @@ public class Hero : MonoBehaviour {
 
 	}
 
+	public void SetSpeed(float desiredSpeed) {
+		speed = desiredSpeed;
+	}
+
+	public void SetDirection (string desiredDirection) {
+		direction = desiredDirection;
+	}
+
+	void Move(float velocity, string requiredDirection) {
+		if (requiredDirection == "up") {
+			if (isUpEnabled) {
+				this.transform.position += Vector3.up * velocity * Time.deltaTime;
+			}
+		}
+		if (requiredDirection == "down") {
+			this.transform.position += Vector3.down * velocity * Time.deltaTime;
+		}
+		if (requiredDirection == "right") {
+			this.transform.position += Vector3.right * velocity * Time.deltaTime;
+		}
+		if (requiredDirection == "left") {
+			this.transform.position += Vector3.left * velocity * Time.deltaTime;
+		}
+	}
 }
