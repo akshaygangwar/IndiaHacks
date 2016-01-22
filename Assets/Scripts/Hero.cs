@@ -10,6 +10,7 @@ public class Hero : MonoBehaviour {
 	private Text textBox;
 	private bool isUpEnabled = true;
 	private int randomizer;
+	//private bool isMoving = false;
 
 	// Use this for initialization
 	void Start () {
@@ -53,38 +54,46 @@ public class Hero : MonoBehaviour {
 
 		if (obj.tag == "Door_One") {			//If door one is triggered
 			//Leads towards freedom from Level_1
-			if(Application.loadedLevelName == "Level_1") {
-				Application.LoadLevel("Level_2");
+			if (Application.loadedLevelName == "Level_1") {
+				Application.LoadLevel ("Level_2");
 			}
 			//Leads deeper from Level_2
 			if (Application.loadedLevelName == "Level_2") {
-				Application.LoadLevel("Level_5");
+				Application.LoadLevel ("Level_5");
 			}
 			//Leads deeper from Level_4
 			if (Application.loadedLevelName == "Level_4") {
-				Application.LoadLevel("Level_9");
+				Application.LoadLevel ("Level_9");
 			}
 			//Leads towards any of the two from Level_8
 			if (Application.loadedLevelName == "Level_8") {
-				LoadRandomLevel("Level_12", "Level_8", "Level_11");
+				LoadRandomLevel ("Level_12", "Level_8", "Level_11");
+			}
+			//Leads deeper from Level_12
+			if(Application.loadedLevelName == "Level_12") {
+				Application.LoadLevel("Level_7");
 			}
 
 		} else if (obj.tag == "Door_Two") {		//If door two is triggered
 			//Leads towards any of the two for Level_1
 			if (Application.loadedLevelName == "Level_1") {
-				LoadRandomLevel("Level_2", "Level_1", "Level_3");
+				LoadRandomLevel ("Level_2", "Level_1", "Level_3");
 			}
 			//Leads towards any of the two for Level_2
 			if (Application.loadedLevelName == "Level_2") {
-				LoadRandomLevel("Level_4", "Level_2", "Level_5");
+				LoadRandomLevel ("Level_4", "Level_2", "Level_5");
 			}
 			//Leads towards freedom from Level_4
 			if (Application.loadedLevelName == "Level_4") {
-				Application.LoadLevel("Level_8");
+				Application.LoadLevel ("Level_8");
 			}
 			//Leads deeper from Level_8
-			if(Application.loadedLevelName == "Level_8") {
-				Application.LoadLevel("Level_11");
+			if (Application.loadedLevelName == "Level_8") {
+				Application.LoadLevel ("Level_11");
+			}
+			//Leads to win screen from Level_12
+			if (Application.loadedLevelName == "Level_12") {
+				Application.LoadLevel("WinScene");
 			}
 
 		} else if (obj.tag == "Door_Three") {	//If door three is triggered, head deeper inside.
@@ -94,15 +103,19 @@ public class Hero : MonoBehaviour {
 			}
 			//Leads towards freedom from Level_2
 			if (Application.loadedLevelName == "Level_2") {
-				Application.LoadLevel("Level_4");
+				Application.LoadLevel ("Level_4");
 			}
 			//Leads towards any of the two from Level_4
 			if (Application.loadedLevelName == "Level_4") {
-				LoadRandomLevel("Level_8", "Level_4", "Level_9");
+				LoadRandomLevel ("Level_8", "Level_4", "Level_9");
 			}
 			//Leads towards freedom from Level_8
-			if(Application.loadedLevelName == "Level_8") {
-				Application.LoadLevel("Level_12");
+			if (Application.loadedLevelName == "Level_8") {
+				Application.LoadLevel ("Level_12");
+			}
+			//Leads towards any level from Level_12
+			if (Application.loadedLevelName == "Level_12") {
+				LoadRandomLevel("WinScene", "Level_12", "Level_7");
 			}
 
 		} else if (obj.tag == "LevelGeo") {		//If level geometry is triggered, such as walls.
@@ -111,20 +124,26 @@ public class Hero : MonoBehaviour {
 
 		} else if (obj.tag == "Box") {			//If hint boxes/scrolls are triggered.
 
-			if(Application.loadedLevelName == "Level_1") {
+			if (Application.loadedLevelName == "Level_1") {
 				textBox.text = "Three doors you will see, one of them will help you get free. One will lead you further, deep and one " +
 					"will always change where it leads." +
 					"Take the first door. Or don't.";
 			} else if (Application.loadedLevelName == "Level_2") {
 				textBox.text = "You've taken your first step towards freedom. The rules are the same. Choose wisely." +
-						" Hint: 5x - 15 = 0." +
-						" I count left to right.";
+					" Hint: 5x - 15 = 0." +
+					" I count left to right.";
 			} else if (Application.loadedLevelName == "Level_4") {
 				textBox.text = "Hint: tan(45°) + 1";
 			} else if (Application.loadedLevelName == "Level_8") {
 				textBox.text = "Hint: If a half of 5 equals 3, then the door you want is one more than the half of a third of 10.";
+			} else if (Application.loadedLevelName == "Level_12") {
+				textBox.text = "Finally, you're just one step away from succeeding in your quest." +
+					"Talk to the assassin. He'll help you.";
 			}
 	
+		} else if (obj.tag == "HelpfulAssassin") {
+			textBox.text = "If the number 481 ? 67 is completely divisible by 9, then the smallest whole number in place of ? " +
+				"will be on the left of the door you need.";
 		}
 	}
 
@@ -156,6 +175,13 @@ public class Hero : MonoBehaviour {
 		}
 
 	}
+//	public void SetIsMoving() {
+//		isMoving = true;
+//	}
+//
+//	public void SetIsNotMoving() {
+//		isMoving = false;
+//	}
 
 	public void SetSpeed(float desiredSpeed) {
 		speed = desiredSpeed;
@@ -164,6 +190,14 @@ public class Hero : MonoBehaviour {
 	public void SetDirection (string desiredDirection) {
 		direction = desiredDirection;
 	}
+
+//	public void IncreaseSpeed () {
+//		if (isMoving) {
+//			SetSpeed (10);
+//		} else {
+//			SetSpeed (0);
+//		}
+//	}
 
 	void Move(float velocity, string requiredDirection) {
 		if (requiredDirection == "up") {
