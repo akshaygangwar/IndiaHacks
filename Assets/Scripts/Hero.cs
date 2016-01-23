@@ -7,6 +7,8 @@ public class Hero : MonoBehaviour {
 	float speed = 0;
 	string direction;
 
+	public float health = 100f;
+
 	private Text textBox;
 	private bool isUpEnabled = true;
 	private int randomizer;
@@ -214,5 +216,10 @@ public class Hero : MonoBehaviour {
 		if (requiredDirection == "left") {
 			this.transform.position += Vector3.left * velocity * Time.deltaTime;
 		}
+	}
+
+	public void GetDamaged(float damage) {
+		health -= damage;
+		Debug.Log (health.ToString ());
 	}
 }
