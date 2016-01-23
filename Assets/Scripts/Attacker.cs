@@ -14,7 +14,9 @@ public class Attacker : MonoBehaviour {
 	}
 
 	void CalculateDirection() {
-		direction = hero.transform.position - this.transform.position;
+		if(hero) { //prevent attempt to access hero's transform after gameobject has been destroyed.
+			direction = hero.transform.position - this.transform.position;
+		}
 		if (flag <= 5) {
 			//Debug.Log(direction.ToString());
 			//flag++;
@@ -41,7 +43,9 @@ public class Attacker : MonoBehaviour {
 	}
 
 	void StartAttacking() {
-		heroScript.GetDamaged (10);
+		if (hero) { //check if hero is alive
+			heroScript.GetDamaged (10);
+		}
 	}
 
 	void OnCollisionExit2D(Collision2D collider) {

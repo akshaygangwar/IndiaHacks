@@ -48,6 +48,9 @@ public class Hero : MonoBehaviour {
 		}
 
 		Move (speed, direction);
+		if (health <= 0) {
+			Destroy(gameObject);
+		}
 
 	}
 
