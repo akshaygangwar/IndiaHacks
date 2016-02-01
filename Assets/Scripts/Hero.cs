@@ -9,6 +9,10 @@ public class Hero : MonoBehaviour {
 
 	public float health = 100f;
 
+	public GameObject weapon;
+	public float projectileSpeed;
+	public float projectileDamage;
+
 	private Text textBox;
 	private bool isUpEnabled = true;
 	private int randomizer;
@@ -223,6 +227,12 @@ public class Hero : MonoBehaviour {
 
 	public void GetDamaged(float damage) {
 		health -= damage;
-		Debug.Log (health.ToString ());
+		//Debug.Log (health.ToString ());
+	}
+
+	public void Fire() {
+		Vector3 startPosition = transform.position + new Vector3 (1, 0, 0);
+		GameObject newWeapon = Instantiate (weapon, startPosition, Quaternion.identity) as GameObject;
+		newWeapon.GetComponent<Rigidbody2D> ().velocity = new Vector3 (projectileSpeed, 0, 0);
 	}
 }

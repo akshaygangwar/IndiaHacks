@@ -7,6 +7,7 @@ public class Attacker : MonoBehaviour {
 	private bool canMove = true;
 	public Hero heroScript;
 	private int flag = 0;
+	private float health = 50f;
 	Vector3 direction;
 	// Use this for initialization
 	void Start () {
@@ -40,6 +41,10 @@ public class Attacker : MonoBehaviour {
 			InvokeRepeating("StartAttacking", 0, 0.5f);
 			Debug.Log("X: " + direction.x.ToString() + " Y: " + direction.y.ToString());
 		}
+		if (obj.tag == "Weapon") {
+			DealDamage(10); //do damage to attacker
+			Destroy(obj); //destroy the weapon projectile after damage has been dealt
+		}
 	}
 
 	void StartAttacking() {
@@ -52,6 +57,14 @@ public class Attacker : MonoBehaviour {
 		Debug.Log ("collision exited");
 		canMove = true;
 		CancelInvoke ("StartAttacking");
+	}
+
+	void DealDamage(float damage) {
+		if (health > 0) {
+			health -= damage;
+		} else {
+			Destroy(gameObject);
+		}
 	}
 
 
