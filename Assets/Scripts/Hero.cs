@@ -15,7 +15,9 @@ public class Hero : MonoBehaviour {
 
 	private Text textBox;
 	private bool isUpEnabled = true;
+	private bool isFacingLeft = false;
 	private int randomizer;
+	private int projectileCount = 0;
 	//private bool isMoving = false;
 
 	// Use this for initialization
@@ -218,9 +220,13 @@ public class Hero : MonoBehaviour {
 			this.transform.position += Vector3.down * velocity * Time.deltaTime;
 		}
 		if (requiredDirection == "right") {
+			isFacingLeft = false;
+			this.transform.localScale = new Vector3(0.6875004f, 1f, 1f);
 			this.transform.position += Vector3.right * velocity * Time.deltaTime;
 		}
 		if (requiredDirection == "left") {
+			isFacingLeft = true;
+			this.transform.localScale = new Vector3(-0.6875004f, 1f, 1f); 
 			this.transform.position += Vector3.left * velocity * Time.deltaTime;
 		}
 	}
@@ -231,8 +237,26 @@ public class Hero : MonoBehaviour {
 	}
 
 	public void Fire() {
-		Vector3 startPosition = transform.position + new Vector3 (1, 0, 0);
-		GameObject newWeapon = Instantiate (weapon, startPosition, Quaternion.identity) as GameObject;
-		newWeapon.GetComponent<Rigidbody2D> ().velocity = new Vector3 (projectileSpeed, 0, 0);
+		if (projectileCount <= 10) {
+			projectileCount++;
+			if (!isFacingLeft) {
+				Vector3 startPosition = transform.position + new Vector3 (1, 0, 0);
+				GameObject newWeapon = Instantiate (weapon, startPosition, Quaternion.identity) as GameObject;
+				newWeapon.GetComponent<Rigidbody2D> ().velocity = new Vector3 (projectileSpeed, 0, 0);
+			} else {
+				Vector3 startPosition = transform.position + new Vector3 (-1, 0, 0);
+				GameObject newWeapon = Instantiate (weapon, startPosition, Quaternion.identity) as GameObject;
+				newWeapon.transform.localScale = new Vector3 (-3f, 3f, 1f);
+				newWeapon.GetComponent<Rigidbody2D> ().velocity = new Vector3 (-projectileSpeed, 0, 0);
+			}
+		}
+	}
+
+	public int GetProjectileCount() {
+		return projectileCount;
+	}
+
+	public void DecrementProjectileCount() {
+		projectileCount--;
 	}
 }
