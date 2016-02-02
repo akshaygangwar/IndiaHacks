@@ -13,16 +13,20 @@ public class Hero : MonoBehaviour {
 	public float projectileSpeed;
 	public float projectileDamage;
 
-	private Text textBox;
+	public Text textBox;
 	private bool isUpEnabled = true;
 	private bool isFacingLeft = false;
+	private bool isAttackerLevel = false;
 	private int randomizer;
 	private int projectileCount = 0;
 	//private bool isMoving = false;
 
 	// Use this for initialization
 	void Start () {
-		textBox = FindObjectOfType<Text>();
+		//textBox = FindObjectOfType<Text>();
+		if (Application.loadedLevelName == "Level_3") {
+			isAttackerLevel = true;
+		}
 	}
 	
 	// Update is called once per frame
@@ -143,6 +147,10 @@ public class Hero : MonoBehaviour {
 				textBox.text = "You've taken your first step towards freedom. The rules are the same. Choose wisely." +
 					" Hint: 5x - 15 = 0." +
 					" I count left to right.";
+			} else if (Application.loadedLevelName == "Level_3") {
+
+				textBox.text = "Find the next number in the series 2 9 3 1 8 4 3 6 5 7 _ and go to it's right.";
+
 			} else if (Application.loadedLevelName == "Level_4") {
 				textBox.text = "Hint: tan(45°) + 1";
 			} else if (Application.loadedLevelName == "Level_8") {
@@ -161,7 +169,10 @@ public class Hero : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D collider) {
 		//reset temporary changes made by triggers
 		isUpEnabled = true;
-		textBox.text = "";
+		if (isAttackerLevel == true) {
+		} else {
+			textBox.text = "";
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)

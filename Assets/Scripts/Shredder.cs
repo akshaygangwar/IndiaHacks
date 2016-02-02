@@ -17,6 +17,6 @@ public class Shredder : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision) {
 		Destroy (collision.gameObject);
 		instanceOfHero.GetComponent<Hero>().DecrementProjectileCount ();
-		Debug.Log (instanceOfHero.GetComponent<Hero> ().GetProjectileCount ());
+		//Debug.Log (instanceOfHero.GetComponent<Hero> ().GetProjectileCount ());
 	}
 }

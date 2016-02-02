@@ -8,10 +8,13 @@ public class Attacker : MonoBehaviour {
 	public Hero heroScript;
 	private int flag = 0;
 	private float health = 50f;
+	public GameObject levelManager;
+	public LevelManager levelManagerScript;
 	Vector3 direction;
 	// Use this for initialization
 	void Start () {
 		heroScript = hero.GetComponent<Hero> ();
+		levelManagerScript = levelManager.GetComponent<LevelManager> ();
 	}
 
 	void CalculateDirection() {
@@ -27,9 +30,11 @@ public class Attacker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		CalculateDirection ();
-		if (canMove) {
-			this.transform.position += direction * Time.deltaTime;
+		if (levelManagerScript.GetGameRunningStatus ()) {
+			CalculateDirection ();
+			if (canMove) {
+				this.transform.position += direction * Time.deltaTime;
+			}
 		}
 	}
 
