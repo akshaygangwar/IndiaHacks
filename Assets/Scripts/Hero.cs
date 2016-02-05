@@ -76,17 +76,30 @@ public class Hero : MonoBehaviour {
 			if (Application.loadedLevelName == "Level_2") {
 				Application.LoadLevel ("Level_5");
 			}
+
+			//Leads towards any of the two from Level_3
+			if(Application.loadedLevelName == "Level_3") {
+				LoadRandomLevel("Level_6", "Level_3", "Level_7");
+			}
 			//Leads deeper from Level_4
 			if (Application.loadedLevelName == "Level_4") {
 				Application.LoadLevel ("Level_9");
+			}
+			//Leads deeper from Level_6
+			if(Application.loadedLevelName == "Level_6") {
+				Application.LoadLevel("Level_5");
 			}
 			//Leads towards any of the two from Level_8
 			if (Application.loadedLevelName == "Level_8") {
 				LoadRandomLevel ("Level_12", "Level_8", "Level_11");
 			}
+			//Leads towards freedom from Level_10
+			if(Application.loadedLevelName == "Level_10") {
+				Application.LoadLevel("Level_4");
+			}
 			//Leads deeper from Level_12
-			if(Application.loadedLevelName == "Level_12") {
-				Application.LoadLevel("Level_7");
+			if (Application.loadedLevelName == "Level_12") {
+				Application.LoadLevel ("Level_7");
 			}
 
 		} else if (obj.tag == "Door_Two") {		//If door two is triggered
@@ -98,17 +111,30 @@ public class Hero : MonoBehaviour {
 			if (Application.loadedLevelName == "Level_2") {
 				LoadRandomLevel ("Level_4", "Level_2", "Level_5");
 			}
+
+			//Leads deeper from Level_3
+			if(Application.loadedLevelName == "Level_3") {
+				Application.LoadLevel("Level_7");
+			}
 			//Leads towards freedom from Level_4
 			if (Application.loadedLevelName == "Level_4") {
 				Application.LoadLevel ("Level_8");
+			}
+			//Leads towards freedom from Level_6
+			if(Application.loadedLevelName == "Level_6") {
+				Application.LoadLevel("Level_10");
 			}
 			//Leads deeper from Level_8
 			if (Application.loadedLevelName == "Level_8") {
 				Application.LoadLevel ("Level_11");
 			}
+			//Leads to any of the two from Level_10
+			if (Application.loadedLevelName == "Level_10") {
+				LoadRandomLevel ("Level_4", "Level_10", "Level_11");
+			}
 			//Leads to win screen from Level_12
 			if (Application.loadedLevelName == "Level_12") {
-				Application.LoadLevel("WinScene");
+				Application.LoadLevel ("WinScene");
 			}
 
 		} else if (obj.tag == "Door_Three") {	//If door three is triggered, head deeper inside.
@@ -120,17 +146,29 @@ public class Hero : MonoBehaviour {
 			if (Application.loadedLevelName == "Level_2") {
 				Application.LoadLevel ("Level_4");
 			}
+			//Leads towards freedom from Level_3
+			if(Application.loadedLevelName == "Level_3") {
+				Application.LoadLevel("Level_6");
+			}
 			//Leads towards any of the two from Level_4
 			if (Application.loadedLevelName == "Level_4") {
 				LoadRandomLevel ("Level_8", "Level_4", "Level_9");
+			}
+			//Leads towards any level from Level_6
+			if(Application.loadedLevelName == "Level_6") {
+				LoadRandomLevel("Level_10", "Level_6", "Level_5");
 			}
 			//Leads towards freedom from Level_8
 			if (Application.loadedLevelName == "Level_8") {
 				Application.LoadLevel ("Level_12");
 			}
+			//Leads deeper from Level_10
+			if (Application.loadedLevelName == "Level_10") {
+				Application.LoadLevel("Level_11");
+			}
 			//Leads towards any level from Level_12
 			if (Application.loadedLevelName == "Level_12") {
-				LoadRandomLevel("WinScene", "Level_12", "Level_7");
+				LoadRandomLevel ("WinScene", "Level_12", "Level_7");
 			}
 
 		} else if (obj.tag == "LevelGeo") {		//If level geometry is triggered, such as walls.
@@ -153,8 +191,12 @@ public class Hero : MonoBehaviour {
 
 			} else if (Application.loadedLevelName == "Level_4") {
 				textBox.text = "Hint: tan(45°) + 1";
+			} else if (Application.loadedLevelName == "Level_6") {
+				textBox.text = "What least number must be added to 1056, so that the sum is completely divisible by 23? Take your time.";
 			} else if (Application.loadedLevelName == "Level_8") {
 				textBox.text = "Hint: If a half of 5 equals 3, then the door you want is one more than the half of a third of 10.";
+			} else if (Application.loadedLevelName == "Level_10") {
+				textBox.text = "Door number 0! will lead you on... That's not just an exclamation; just saying.";
 			} else if (Application.loadedLevelName == "Level_12") {
 				textBox.text = "Finally, you're just one step away from succeeding in your quest." +
 					"Talk to the assassin. He'll help you.";
@@ -163,6 +205,13 @@ public class Hero : MonoBehaviour {
 		} else if (obj.tag == "HelpfulAssassin") {
 			textBox.text = "If the number 481 ? 67 is completely divisible by 9, then the smallest whole number in place of ? " +
 				"will be on the left of the door you need.";
+		} else if (obj.tag == "HealthPotion") {
+			if(health <= 50f) {
+				health += 50f;
+			} else {
+				health = 100f;
+			}
+			Destroy(obj);
 		}
 	}
 
