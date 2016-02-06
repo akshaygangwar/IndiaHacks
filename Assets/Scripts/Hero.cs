@@ -24,7 +24,7 @@ public class Hero : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//textBox = FindObjectOfType<Text>();
-		if (Application.loadedLevelName == "Level_3") {
+		if (Application.loadedLevelName == "Level_3" || Application.loadedLevelName == "Level_10" ) {
 			isAttackerLevel = true;
 		}
 	}

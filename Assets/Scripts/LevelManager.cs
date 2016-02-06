@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour {
 	public GameObject panel;
 	public GameObject button;
 
-	private bool isGameRunning = false;
+	public bool isGameRunning = false; //TODO: Make private after debugging
 
 	// Use this for initialization
 	void Start () {
