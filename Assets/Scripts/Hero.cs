@@ -24,7 +24,8 @@ public class Hero : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//textBox = FindObjectOfType<Text>();
-		if (Application.loadedLevelName == "Level_3" || Application.loadedLevelName == "Level_10" ) {
+		if (Application.loadedLevelName == "Level_3" || Application.loadedLevelName == "Level_10" || Application.loadedLevelName == "Level_9" 
+		    || Application.loadedLevelName == "Level_7") {
 			isAttackerLevel = true;
 		}
 	}
@@ -63,6 +64,9 @@ public class Hero : MonoBehaviour {
 		}
 
 	}
+
+	//TODO: Add door handling for Level_7
+	//TODO: Add hint for Level_7
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		GameObject obj = collider.gameObject;
