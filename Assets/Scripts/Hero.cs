@@ -64,9 +64,6 @@ public class Hero : MonoBehaviour {
 
 	}
 
-	//TODO: Add door handlers for transitions from Level_9 onwards
-	//TODO: Add hint for Level_9
-
 	void OnTriggerEnter2D(Collider2D collider) {
 		GameObject obj = collider.gameObject;
 
@@ -99,6 +96,10 @@ public class Hero : MonoBehaviour {
 			//Leads towards any of the two from Level_8
 			if (Application.loadedLevelName == "Level_8") {
 				LoadRandomLevel ("Level_12", "Level_8", "Level_11");
+			}
+			//Leads to any level from Level_9
+			if(Application.loadedLevelName == "Level_9") {
+				LoadRandomLevel("Level_8", "Level_9", "Level_6");
 			}
 			//Leads towards freedom from Level_10
 			if(Application.loadedLevelName == "Level_10") {
@@ -139,6 +140,10 @@ public class Hero : MonoBehaviour {
 			if (Application.loadedLevelName == "Level_8") {
 				Application.LoadLevel ("Level_11");
 			}
+			//Leads deeper from Level_9
+			if(Application.loadedLevelName == "Level_9") {
+				Application.LoadLevel("Level_6");
+			}
 			//Leads to any of the two from Level_10
 			if (Application.loadedLevelName == "Level_10") {
 				LoadRandomLevel ("Level_4", "Level_10", "Level_11");
@@ -177,6 +182,10 @@ public class Hero : MonoBehaviour {
 			if (Application.loadedLevelName == "Level_8") {
 				Application.LoadLevel ("Level_12");
 			}
+			//Leads towards freedom from Level_9
+			if(Application.loadedLevelName == "Level_9") {
+				Application.LoadLevel ("Level_8");
+			}
 			//Leads deeper from Level_10
 			if (Application.loadedLevelName == "Level_10") {
 				Application.LoadLevel("Level_11");
@@ -212,6 +221,8 @@ public class Hero : MonoBehaviour {
 				textBox.text = "What least number must be added to 1056, so that the sum is completely divisible by 23? Take your time.";
 			} else if (Application.loadedLevelName == "Level_8") {
 				textBox.text = "Hint: If a half of 5 equals 3, then the door you want is one more than the half of a third of 10.";
+			} else if (Application.loadedLevelName == "Level_9") {
+				textBox.text = "Sum the smallest prime number and one more than the lowest whole number.";
 			} else if (Application.loadedLevelName == "Level_10") {
 				textBox.text = "Door number 0! will lead you on... That's not just an exclamation; just saying.";
 			} else if (Application.loadedLevelName == "Level_12") {
@@ -220,7 +231,7 @@ public class Hero : MonoBehaviour {
 			}
 	
 		} else if (obj.tag == "HelpfulAssassin") {
-			textBox.text = "If the number 481 ? 67 is completely divisible by 9, then the smallest whole number in place of ? " +
+			textBox.text = "If the number 481_67 is completely divisible by 9, then the smallest whole number in place of _ " +
 				"will be on the left of the door you need.";
 		} else if (obj.tag == "HealthPotion") {
 			if(health <= 50f) { //If health is less than 50, add 50 health.
