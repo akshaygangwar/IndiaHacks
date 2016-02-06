@@ -65,7 +65,6 @@ public class Hero : MonoBehaviour {
 	}
 
 	//TODO: Add door handlers for transitions from Level_5 onwards
-	//TODO: Add box hint text for Level_5
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		GameObject obj = collider.gameObject;
@@ -86,6 +85,10 @@ public class Hero : MonoBehaviour {
 			}
 			//Leads deeper from Level_4
 			if (Application.loadedLevelName == "Level_4") {
+				Application.LoadLevel ("Level_9");
+			}
+			//Leads towards freedom from Level_5
+			if (Application.loadedLevelName == "Level_5") {
 				Application.LoadLevel ("Level_9");
 			}
 			//Leads deeper from Level_6
@@ -123,6 +126,10 @@ public class Hero : MonoBehaviour {
 			if (Application.loadedLevelName == "Level_4") {
 				Application.LoadLevel ("Level_8");
 			}
+			//Leads towards any of the two from Level_5
+			if (Application.loadedLevelName == "Level_5") {
+				LoadRandomLevel("Level_9", "Level_5", "Level_3");
+			}
 			//Leads towards freedom from Level_6
 			if(Application.loadedLevelName == "Level_6") {
 				Application.LoadLevel("Level_10");
@@ -156,6 +163,10 @@ public class Hero : MonoBehaviour {
 			//Leads towards any of the two from Level_4
 			if (Application.loadedLevelName == "Level_4") {
 				LoadRandomLevel ("Level_8", "Level_4", "Level_9");
+			}
+			//Leads deeper from Level_5
+			if (Application.loadedLevelName == "Level_5") {
+				Application.LoadLevel("Level_3");
 			}
 			//Leads towards any level from Level_6
 			if(Application.loadedLevelName == "Level_6") {
