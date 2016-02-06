@@ -64,6 +64,9 @@ public class Hero : MonoBehaviour {
 
 	}
 
+	//TODO: Add door handlers for transitions from Level_5 onwards
+	//TODO: Add box hint text for Level_5
+
 	void OnTriggerEnter2D(Collider2D collider) {
 		GameObject obj = collider.gameObject;
 
@@ -191,6 +194,8 @@ public class Hero : MonoBehaviour {
 
 			} else if (Application.loadedLevelName == "Level_4") {
 				textBox.text = "Hint: tan(45°) + 1";
+			} else if (Application.loadedLevelName == "Level_5") {
+				textBox.text = "What is the value of (i^2) * (-1)?";
 			} else if (Application.loadedLevelName == "Level_6") {
 				textBox.text = "What least number must be added to 1056, so that the sum is completely divisible by 23? Take your time.";
 			} else if (Application.loadedLevelName == "Level_8") {
@@ -206,12 +211,12 @@ public class Hero : MonoBehaviour {
 			textBox.text = "If the number 481 ? 67 is completely divisible by 9, then the smallest whole number in place of ? " +
 				"will be on the left of the door you need.";
 		} else if (obj.tag == "HealthPotion") {
-			if(health <= 50f) {
+			if(health <= 50f) { //If health is less than 50, add 50 health.
 				health += 50f;
-			} else {
+			} else {			//otherwise (if health > 50), simply make health 100 to avoid overflows
 				health = 100f;
 			}
-			Destroy(obj);
+			Destroy(obj);		//Destroy the health potion after consuming
 		}
 	}
 
