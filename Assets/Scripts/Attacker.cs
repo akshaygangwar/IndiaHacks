@@ -9,12 +9,26 @@ public class Attacker : MonoBehaviour {
 	private int flag = 0;
 	private float health = 50f;
 	public GameObject levelManager;
+	public GameObject weapon;
 	public LevelManager levelManagerScript;
+	private bool isRangedAttacker = false;
+	public float projectileSpeed = 0f;
 	Vector3 direction;
 	// Use this for initialization
 	void Start () {
+		if (this.tag == "RangedAttacker") {
+			this.isRangedAttacker = true;
+			InvokeRepeating("ThrowWeapon", 1f, 1f);
+		}
 		heroScript = hero.GetComponent<Hero> ();
 		levelManagerScript = levelManager.GetComponent<LevelManager> ();
+	}
+
+	void ThrowWeapon() {
+		Vector3 StartPosition = this.transform.position + new Vector3 (-1f, 0f, 0f);
+		GameObject newWeapon = Instantiate (weapon, StartPosition, Quaternion.identity) as GameObject;
+		newWeapon.transform.localScale = new Vector3 (-3f, 3f, 1f);
+		newWeapon.GetComponent<Rigidbody2D> ().velocity = new Vector3 (-projectileSpeed, 0f, 0f);
 	}
 
 	void CalculateDirection() {

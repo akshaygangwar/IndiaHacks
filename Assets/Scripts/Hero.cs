@@ -64,7 +64,8 @@ public class Hero : MonoBehaviour {
 
 	}
 
-	//TODO: Add door handlers for transitions from Level_5 onwards
+	//TODO: Add door handlers for transitions from Level_9 onwards
+	//TODO: Add hint for Level_9
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		GameObject obj = collider.gameObject;
@@ -224,10 +225,11 @@ public class Hero : MonoBehaviour {
 		} else if (obj.tag == "HealthPotion") {
 			if(health <= 50f) { //If health is less than 50, add 50 health.
 				health += 50f;
-			} else {			//otherwise (if health > 50), simply make health 100 to avoid overflows
+				Destroy(obj);		//Destroy the health potion after consuming
+			} else if (health > 50 && health < 100){			//otherwise (if health > 50), simply make health 100 to avoid overflows
 				health = 100f;
+				Destroy(obj);		//Destroy the health potion after consuming
 			}
-			Destroy(obj);		//Destroy the health potion after consuming
 		}
 	}
 
@@ -241,7 +243,13 @@ public class Hero : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
-	{}
+	{
+		GameObject obj = collision.gameObject;
+		if (obj.tag == "Weapon") {
+			GetDamaged(10f);
+			Destroy(obj);
+		}
+	}
 
 	void LoadRandomLevel(string upperLevel, string currentLevel, string lowerLevel) {
 		randomizer = Random.Range(0,3);
