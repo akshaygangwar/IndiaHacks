@@ -65,8 +65,8 @@ public class Hero : MonoBehaviour {
 
 	}
 
-	//TODO: Add door handling for Level_7
-	//TODO: Add hint for Level_7
+	//TODO: Add door handling for Level_11
+	//TODO: Add hint for Level_11
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		GameObject obj = collider.gameObject;
@@ -96,6 +96,10 @@ public class Hero : MonoBehaviour {
 			//Leads deeper from Level_6
 			if(Application.loadedLevelName == "Level_6") {
 				Application.LoadLevel("Level_5");
+			}
+			//Leads towards freedom from Level_7
+			if (Application.loadedLevelName == "Level_7") {
+				Application.LoadLevel("Level_11");
 			}
 			//Leads towards any of the two from Level_8
 			if (Application.loadedLevelName == "Level_8") {
@@ -140,6 +144,10 @@ public class Hero : MonoBehaviour {
 			if(Application.loadedLevelName == "Level_6") {
 				Application.LoadLevel("Level_10");
 			}
+			//Leads deeper from Level_7
+			if (Application.loadedLevelName == "Level_7") {
+				Application.LoadLevel("Level_9");
+			}
 			//Leads deeper from Level_8
 			if (Application.loadedLevelName == "Level_8") {
 				Application.LoadLevel ("Level_11");
@@ -182,6 +190,10 @@ public class Hero : MonoBehaviour {
 			if(Application.loadedLevelName == "Level_6") {
 				LoadRandomLevel("Level_10", "Level_6", "Level_5");
 			}
+			//Leads towards any level from Level_7
+			if (Application.loadedLevelName == "Level_7") {
+				LoadRandomLevel("Level_11", "Level_7", "Level_9");
+			}
 			//Leads towards freedom from Level_8
 			if (Application.loadedLevelName == "Level_8") {
 				Application.LoadLevel ("Level_12");
@@ -223,6 +235,8 @@ public class Hero : MonoBehaviour {
 				textBox.text = "What is the value of (i^2) * (-1)?";
 			} else if (Application.loadedLevelName == "Level_6") {
 				textBox.text = "What least number must be added to 1056, so that the sum is completely divisible by 23? Take your time.";
+			} else if (Application.loadedLevelName == "Level_7") {
+				textBox.text = "log(10)?";
 			} else if (Application.loadedLevelName == "Level_8") {
 				textBox.text = "Hint: If a half of 5 equals 3, then the door you want is one more than the half of a third of 10.";
 			} else if (Application.loadedLevelName == "Level_9") {
