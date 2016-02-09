@@ -64,8 +64,6 @@ public class Hero : MonoBehaviour {
 		}
 
 	}
-	
-	//TODO: Add hint for Level_11
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		GameObject obj = collider.gameObject;
@@ -255,6 +253,8 @@ public class Hero : MonoBehaviour {
 				textBox.text = "Sum the smallest prime number and one more than the lowest whole number.";
 			} else if (Application.loadedLevelName == "Level_10") {
 				textBox.text = "Door number 0! will lead you on... That's not just an exclamation; just saying.";
+			} else if (Application.loadedLevelName == "Level_11") {
+				textBox.text = "The door next to door number log(10)";
 			} else if (Application.loadedLevelName == "Level_12") {
 				textBox.text = "Finally, you're just one step away from succeeding in your quest." +
 					"Talk to the assassin. He'll help you.";
