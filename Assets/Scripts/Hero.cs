@@ -64,8 +64,7 @@ public class Hero : MonoBehaviour {
 		}
 
 	}
-
-	//TODO: Add door handling for Level_11
+	
 	//TODO: Add hint for Level_11
 
 	void OnTriggerEnter2D(Collider2D collider) {
@@ -112,6 +111,11 @@ public class Hero : MonoBehaviour {
 			//Leads towards freedom from Level_10
 			if(Application.loadedLevelName == "Level_10") {
 				Application.LoadLevel("Level_4");
+			}
+
+			//Leads towards any level from Level_11
+			if (Application.loadedLevelName == "Level_11") {
+				LoadRandomLevel ("Level_9", "Level_11", "Level_6");
 			}
 			//Leads deeper from Level_12
 			if (Application.loadedLevelName == "Level_12") {
@@ -160,6 +164,10 @@ public class Hero : MonoBehaviour {
 			if (Application.loadedLevelName == "Level_10") {
 				LoadRandomLevel ("Level_4", "Level_10", "Level_11");
 			}
+			//Leads towards freedom from Level_11
+			if (Application.loadedLevelName == "Level_11") {
+				Application.LoadLevel("Level_9");
+			}
 			//Leads to win screen from Level_12
 			if (Application.loadedLevelName == "Level_12") {
 				Application.LoadLevel ("WinScene");
@@ -205,6 +213,10 @@ public class Hero : MonoBehaviour {
 			//Leads deeper from Level_10
 			if (Application.loadedLevelName == "Level_10") {
 				Application.LoadLevel("Level_11");
+			}
+			//Leads deeper from Level_10
+			if (Application.loadedLevelName == "Level_11") {
+				Application.LoadLevel ("Level_6");
 			}
 			//Leads towards any level from Level_12
 			if (Application.loadedLevelName == "Level_12") {
