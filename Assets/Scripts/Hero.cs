@@ -7,11 +7,12 @@ public class Hero : MonoBehaviour {
 	float speed = 0;
 	string direction;
 
-	public float health = 100f;
+	public static float health;
 
 	public GameObject weapon;
 	public float projectileSpeed;
 	public float projectileDamage;
+	public LevelManager levelManager;
 
 	public Text textBox;
 	private bool isUpEnabled = true;
@@ -383,5 +384,13 @@ public class Hero : MonoBehaviour {
 
 	public void DecrementProjectileCount() {
 		projectileCount--;
+	}
+
+	public float GetHealth() {
+		return health;
+	}
+
+	public void SetHealth(float healthValue) {
+		health = healthValue;
 	}
 }
