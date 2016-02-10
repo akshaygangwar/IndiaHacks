@@ -16,19 +16,21 @@ public class Attacker : MonoBehaviour {
 	Vector3 direction;
 	// Use this for initialization
 	void Start () {
-		if (this.tag == "RangedAttacker") {
-			this.isRangedAttacker = true;
-			InvokeRepeating("ThrowWeapon", 1f, 1f);
-		}
 		heroScript = hero.GetComponent<Hero> ();
 		levelManagerScript = levelManager.GetComponent<LevelManager> ();
+		if (this.tag == "RangedAttacker") {
+			this.isRangedAttacker = true;
+			InvokeRepeating ("ThrowWeapon", 1f, 1f);
+		}
 	}
 
 	void ThrowWeapon() {
-		Vector3 StartPosition = this.transform.position + new Vector3 (-1f, 0f, 0f);
-		GameObject newWeapon = Instantiate (weapon, StartPosition, Quaternion.identity) as GameObject;
-		newWeapon.transform.localScale = new Vector3 (-3f, 3f, 1f);
-		newWeapon.GetComponent<Rigidbody2D> ().velocity = new Vector3 (-projectileSpeed, 0f, 0f);
+		if (levelManagerScript.GetGameRunningStatus ()) {
+			Vector3 StartPosition = this.transform.position + new Vector3 (-1f, 0f, 0f);
+			GameObject newWeapon = Instantiate (weapon, StartPosition, Quaternion.identity) as GameObject;
+			newWeapon.transform.localScale = new Vector3 (-3f, 3f, 1f);
+			newWeapon.GetComponent<Rigidbody2D> ().velocity = new Vector3 (-projectileSpeed, 0f, 0f);
+		}
 	}
 
 	void CalculateDirection() {
@@ -44,6 +46,7 @@ public class Attacker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+//		Debug.Log (levelManagerScript.GetGameRunningStatus ().ToString());
 		if (levelManagerScript.GetGameRunningStatus ()) {
 			CalculateDirection ();
 			if (canMove) {
