@@ -51,7 +51,7 @@
      <Compile Include="Assets\Scripts\Hero.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Shredder.cs" />
-     <Compile Include="Assets\TimeDisplay.cs" />
+     <Compile Include="Assets\Scripts\TimeDisplay.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
